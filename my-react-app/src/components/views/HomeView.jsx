@@ -24,7 +24,7 @@ export default function HomeView({ onNavigate }) {
     { id: 'reports', title: 'Reports', desc: 'Searchable HSSE observation explorer', icon: FileText },
   ];
 
-  // Carousel images configured with details matching uploaded HSE safety posters
+  // Carousel images configured with details corresponding to uploaded images
   const carouselImages = [
     {
       src: '/slide1.jpg',
@@ -66,13 +66,13 @@ export default function HomeView({ onNavigate }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-switch image every 3 seconds (3000ms)
+  // Auto-switch image every 1 second (1000ms)
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
-    }, 3000);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, [isPaused, carouselImages.length]);
@@ -85,7 +85,7 @@ export default function HomeView({ onNavigate }) {
     setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
   };
 
-  // Helper function to calculate circular loop indices
+  // Helper function to get indices for Left, Center, Right in a loop
   const getSlideIndex = (offset) => {
     const total = carouselImages.length;
     return (currentSlide + offset + total) % total;
@@ -97,7 +97,7 @@ export default function HomeView({ onNavigate }) {
 
   return (
     <main className="flex-1 flex flex-col min-w-0 bg-[#f3f6f9]">
-      {/* 100% Full Width Hero Header */}
+      {/* 100% Full Width Hero Header (UNCHANGED) */}
       <div className="relative w-full h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden shadow-xs bg-[#013531]">
         <img
           src="/assets/home-banner.jpg"
@@ -295,7 +295,7 @@ export default function HomeView({ onNavigate }) {
         </div>
 
         {/* ============================================================== */}
-        {/* SOFT COLOR CAROUSEL: 3s ROTATION, NO ZOOM / PROPER CONTAIN FIT */}
+        {/* 3-CARD FOCUS CAROUSEL WITH 1-SECOND TIMER & SIDE BLUR EFFECT   */}
         {/* ============================================================== */}
         <div className="space-y-3 pt-2">
           <div className="flex items-center justify-between">
@@ -304,90 +304,87 @@ export default function HomeView({ onNavigate }) {
                 Safety Practices & Field Highlights
               </h2>
               <p className="text-xs text-gray-400 mt-0.5">
-                Automated continuous rotation of safety standards (3s interval).
+                Automated continuous rotation of safety standards (1s interval).
               </p>
             </div>
-            {/* Live Indicator & Slide Counter */}
+            {/* Live Indicator & Slide Count */}
             <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-100/70 border border-emerald-200 px-2.5 py-0.5 rounded-full">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-ping" />
+              <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
                 Live Feed
               </span>
-              <span className="text-xs font-mono font-medium text-gray-600 bg-white px-2.5 py-1 rounded-md border border-gray-200 shadow-2xs">
+              <span className="text-xs font-mono font-medium text-gray-500 bg-white px-2.5 py-1 rounded-md border border-gray-200 shadow-2xs">
                 {currentSlide + 1} / {carouselImages.length}
               </span>
             </div>
           </div>
 
-          {/* Soft-toned Outer Container */}
           <div
-            className="relative w-full overflow-hidden py-4 rounded-2xl bg-slate-200/50 border border-slate-200 shadow-xs group"
+            className="relative w-full overflow-hidden py-4 rounded-2xl bg-slate-100/80 border border-gray-200/80 shadow-sm group"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {/* 3-Card Layout Container */}
-            <div className="flex items-center justify-center gap-3 sm:gap-5 px-4 h-72 sm:h-80 md:h-96">
+            {/* 3-Card Layout Wrapper */}
+            <div className="flex items-center justify-center gap-2 sm:gap-4 px-4 h-72 sm:h-80 md:h-96">
               
-              {/* LEFT SLIDE (Soft background card, uncropped thumbnail, scaled down) */}
+              {/* LEFT SLIDE (Blurred, Opacity-60, Scaled down) */}
               <div
                 onClick={prevSlide}
-                className="hidden sm:flex relative w-1/4 h-[85%] rounded-xl overflow-hidden bg-white border border-slate-200 shadow-xs cursor-pointer transition-all duration-500 scale-90 opacity-60 hover:opacity-90 blur-[1px] hover:blur-none items-center justify-center p-3"
+                className="hidden sm:block relative w-1/4 h-[80%] rounded-xl overflow-hidden shadow-lg cursor-pointer transform transition-all duration-500 hover:opacity-80 scale-90 opacity-50 blur-[1px] hover:blur-none"
               >
                 <img
                   src={carouselImages[leftIndex].src}
                   alt={carouselImages[leftIndex].alt}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.src = `/assets${carouselImages[leftIndex].src}`;
                   }}
                 />
+                <div className="absolute inset-0 bg-black/40" />
               </div>
 
-              {/* CENTER ACTIVE SLIDE (Fully clear, proper aspect fit, clean white background) */}
-              <div className="relative w-full sm:w-1/2 h-full rounded-2xl overflow-hidden bg-white border border-slate-200/90 shadow-md transition-all duration-500 scale-100 z-10 flex flex-col justify-between">
-                
-                {/* Image Container with object-contain to prevent zoom/crop */}
-                <div className="relative w-full h-full p-4 flex items-center justify-center bg-slate-50/50">
-                  <img
-                    key={centerIndex}
-                    src={carouselImages[centerIndex].src}
-                    alt={carouselImages[centerIndex].alt}
-                    className="w-full h-full object-contain transition-all duration-300"
-                    onError={(e) => {
-                      e.currentTarget.src = `/assets${carouselImages[centerIndex].src}`;
-                    }}
-                  />
-                </div>
+              {/* CENTER ACTIVE SLIDE (Clear, Scaled-100, Full detail overlay) */}
+              <div className="relative w-full sm:w-1/2 h-full rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 scale-100 z-10 border border-white/20">
+                <img
+                  key={centerIndex}
+                  src={carouselImages[centerIndex].src}
+                  alt={carouselImages[centerIndex].alt}
+                  className="w-full h-full object-contain md:object-cover bg-slate-900 transition-all duration-300"
+                  onError={(e) => {
+                    e.currentTarget.src = `/assets${carouselImages[centerIndex].src}`;
+                  }}
+                />
 
-                {/* Soft Bottom Caption Overlay */}
-                <div className="w-full bg-slate-900/90 backdrop-blur-md p-4 text-white">
-                  <div className="max-w-xl space-y-0.5">
-                    <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-teal-600 text-white mb-1 shadow-2xs">
+                {/* Dark Overlay with Title & Caption */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-5 md:p-6">
+                  <div className="max-w-xl text-white space-y-1">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-teal-500/90 text-white mb-1 shadow-xs">
                       {carouselImages[centerIndex].tag}
                     </span>
-                    <h3 className="text-sm sm:text-base font-bold tracking-tight text-white leading-tight">
+                    <h3 className="text-base sm:text-lg md:text-xl font-extrabold tracking-tight drop-shadow-xs">
                       {carouselImages[centerIndex].title}
                     </h3>
-                    <p className="text-xs text-slate-300 font-normal leading-snug line-clamp-2">
+                    <p className="text-xs md:text-sm text-gray-200 font-normal leading-relaxed drop-shadow-xs line-clamp-2">
                       {carouselImages[centerIndex].caption}
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* RIGHT SLIDE (Soft background card, uncropped thumbnail, scaled down) */}
+              {/* RIGHT SLIDE (Blurred, Opacity-60, Scaled down) */}
               <div
                 onClick={nextSlide}
-                className="hidden sm:flex relative w-1/4 h-[85%] rounded-xl overflow-hidden bg-white border border-slate-200 shadow-xs cursor-pointer transition-all duration-500 scale-90 opacity-60 hover:opacity-90 blur-[1px] hover:blur-none items-center justify-center p-3"
+                className="hidden sm:block relative w-1/4 h-[80%] rounded-xl overflow-hidden shadow-lg cursor-pointer transform transition-all duration-500 hover:opacity-80 scale-90 opacity-50 blur-[1px] hover:blur-none"
               >
                 <img
                   src={carouselImages[rightIndex].src}
                   alt={carouselImages[rightIndex].alt}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.src = `/assets${carouselImages[rightIndex].src}`;
                   }}
                 />
+                <div className="absolute inset-0 bg-black/40" />
               </div>
 
             </div>
@@ -396,7 +393,7 @@ export default function HomeView({ onNavigate }) {
             <button
               onClick={prevSlide}
               aria-label="Previous slide"
-              className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md border border-slate-200 transition hover:scale-105 active:scale-95 cursor-pointer z-20"
+              className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 transition hover:scale-105 active:scale-95 cursor-pointer z-20 shadow-md"
             >
               <ChevronLeft size={20} />
             </button>
@@ -405,12 +402,12 @@ export default function HomeView({ onNavigate }) {
             <button
               onClick={nextSlide}
               aria-label="Next slide"
-              className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md border border-slate-200 transition hover:scale-105 active:scale-95 cursor-pointer z-20"
+              className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 transition hover:scale-105 active:scale-95 cursor-pointer z-20 shadow-md"
             >
               <ChevronRight size={20} />
             </button>
 
-            {/* Bottom Dots Indicator */}
+            {/* Bottom Indicator Dots */}
             <div className="flex items-center justify-center gap-1.5 pt-3 z-20">
               {carouselImages.map((_, idx) => (
                 <button
@@ -419,8 +416,8 @@ export default function HomeView({ onNavigate }) {
                   aria-label={`Jump to slide ${idx + 1}`}
                   className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     currentSlide === idx
-                      ? 'w-6 bg-[#00695c] shadow-2xs'
-                      : 'w-1.5 bg-slate-300 hover:bg-slate-400'
+                      ? 'w-6 bg-teal-400 shadow-xs'
+                      : 'w-1.5 bg-white/40 hover:bg-white/80'
                   }`}
                 />
               ))}
