@@ -8,6 +8,7 @@ import RiskDashboardView from './components/views/RiskDashboardView';
 import PrecursorPatternsView from './components/views/PrecursorPatternsView';
 import SitesActivitiesView from './components/views/SitesActivitiesView';
 import LifeSavingRulesView from './components/views/LifeSavingRulesView';
+import ReportsView from './components/views/ReportsView';
 
 function PlaceholderView({ title }) {
   return (
@@ -24,7 +25,7 @@ function PlaceholderView({ title }) {
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('rules');
+  const [activeTab, setActiveTab] = useState('reports');
 
   const getPageTitle = (tab) => {
     switch (tab) {
@@ -40,6 +41,8 @@ export default function App() {
         return 'Sites & Activities';
       case 'rules':
         return 'Life-Saving Rules';
+      case 'reports':
+        return 'Reports';
       default:
         return tab.replace('-', ' ');
     }
@@ -76,13 +79,16 @@ export default function App() {
 
         {activeTab === 'rules' && <LifeSavingRulesView />}
 
+        {activeTab === 'reports' && <ReportsView />}
+
         {activeTab !== 'home' &&
           activeTab !== 'analyse' &&
           activeTab !== 'triage' &&
           activeTab !== 'risk-dashboard' &&
           activeTab !== 'patterns' &&
           activeTab !== 'sites' &&
-          activeTab !== 'rules' && (
+          activeTab !== 'rules' &&
+          activeTab !== 'reports' && (
             <PlaceholderView title={getPageTitle(activeTab)} />
           )}
       </div>
