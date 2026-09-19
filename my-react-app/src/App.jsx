@@ -9,6 +9,7 @@ import PrecursorPatternsView from './components/views/PrecursorPatternsView';
 import SitesActivitiesView from './components/views/SitesActivitiesView';
 import LifeSavingRulesView from './components/views/LifeSavingRulesView';
 import ReportsView from './components/views/ReportsView';
+import SystemView from './components/views/SystemView';
 
 function PlaceholderView({ title }) {
   return (
@@ -25,7 +26,7 @@ function PlaceholderView({ title }) {
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('reports');
+  const [activeTab, setActiveTab] = useState('system');
 
   const getPageTitle = (tab) => {
     switch (tab) {
@@ -43,6 +44,8 @@ export default function App() {
         return 'Life-Saving Rules';
       case 'reports':
         return 'Reports';
+      case 'system':
+        return 'System';
       default:
         return tab.replace('-', ' ');
     }
@@ -81,6 +84,8 @@ export default function App() {
 
         {activeTab === 'reports' && <ReportsView />}
 
+        {activeTab === 'system' && <SystemView />}
+
         {activeTab !== 'home' &&
           activeTab !== 'analyse' &&
           activeTab !== 'triage' &&
@@ -88,7 +93,8 @@ export default function App() {
           activeTab !== 'patterns' &&
           activeTab !== 'sites' &&
           activeTab !== 'rules' &&
-          activeTab !== 'reports' && (
+          activeTab !== 'reports' &&
+          activeTab !== 'system' && (
             <PlaceholderView title={getPageTitle(activeTab)} />
           )}
       </div>
