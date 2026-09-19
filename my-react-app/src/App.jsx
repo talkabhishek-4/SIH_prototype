@@ -10,6 +10,7 @@ import SitesActivitiesView from './components/views/SitesActivitiesView';
 import LifeSavingRulesView from './components/views/LifeSavingRulesView';
 import ReportsView from './components/views/ReportsView';
 import SystemView from './components/views/SystemView';
+import AdminView from './components/views/AdminView';
 
 function PlaceholderView({ title }) {
   return (
@@ -26,7 +27,7 @@ function PlaceholderView({ title }) {
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('system');
+  const [activeTab, setActiveTab] = useState('home');
 
   const getPageTitle = (tab) => {
     switch (tab) {
@@ -46,6 +47,8 @@ export default function App() {
         return 'Reports';
       case 'system':
         return 'System';
+      case 'admin':
+        return 'Administration';
       default:
         return tab.replace('-', ' ');
     }
@@ -86,6 +89,8 @@ export default function App() {
 
         {activeTab === 'system' && <SystemView />}
 
+        {activeTab === 'admin' && <AdminView />}
+
         {activeTab !== 'home' &&
           activeTab !== 'analyse' &&
           activeTab !== 'triage' &&
@@ -94,7 +99,8 @@ export default function App() {
           activeTab !== 'sites' &&
           activeTab !== 'rules' &&
           activeTab !== 'reports' &&
-          activeTab !== 'system' && (
+          activeTab !== 'system' &&
+          activeTab !== 'admin' && (
             <PlaceholderView title={getPageTitle(activeTab)} />
           )}
       </div>
