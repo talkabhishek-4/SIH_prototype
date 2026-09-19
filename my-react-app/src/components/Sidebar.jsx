@@ -146,22 +146,35 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
           </div>
         </div>
 
-        {/* User Profile Footer */}
-        <div className="flex items-center justify-between border-t border-[#093f3a] p-3.5 bg-[#002e2b]">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ea580c] text-xs font-bold text-white">
+        {/* User Profile Footer (Navigates to HSE Administration Profile) */}
+        <div 
+          className={`flex items-center justify-between border-t border-[#093f3a] p-3.5 transition-colors duration-150 cursor-pointer ${
+            activeTab === 'hse-admin' 
+              ? 'bg-[#004e47] border-l-4 border-l-[#14b8a6]' 
+              : 'bg-[#002e2b] hover:bg-[#003834]'
+          }`}
+          onClick={() => handleNavClick('hse-admin')}
+          title="Open HSE Administration Profile"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ea580c] text-xs font-bold text-white shadow-xs">
               HA
             </div>
-            <div>
-              <p className="text-xs font-semibold text-white leading-tight">
+            <div className="truncate">
+              <p className="text-xs font-semibold text-white leading-tight truncate">
                 HSE Administrator
               </p>
-              <p className="text-[10px] text-[#71928e]">OIL Corporate HSSE</p>
+              <p className="text-[10px] text-[#71928e] truncate">OIL Corporate HSSE</p>
             </div>
           </div>
-          <div className="relative">
+          <div 
+            className="relative shrink-0 p-1 rounded-md hover:bg-white/10 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevents triggering profile tab open when clicking bell icon
+            }}
+          >
             <Bell size={18} className="text-[#84a39f] hover:text-white cursor-pointer" />
-            <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#ea580c] text-[9px] text-white">
+            <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#ea580c] text-[9px] font-bold text-white">
               4
             </span>
           </div>

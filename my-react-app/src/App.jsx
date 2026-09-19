@@ -11,46 +11,34 @@ import LifeSavingRulesView from './components/views/LifeSavingRulesView';
 import ReportsView from './components/views/ReportsView';
 import SystemView from './components/views/SystemView';
 import AdminView from './components/views/AdminView';
-
-function PlaceholderView({ title }) {
-  return (
-    <main className="flex-1 p-8">
-      <div className="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-xs">
-        <h2 className="text-xl font-bold capitalize text-slate-800">{title}</h2>
-        <p className="mt-2 text-sm text-slate-500">
-          Content for the <span className="font-semibold">{title}</span> section is under construction.
-        </p>
-      </div>
-    </main>
-  );
-}
+import HseAdminProfileView from './components/views/HseAdminProfileView';
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('home');
+  
+  // Tab persistence via localStorage (defaults to 'home')
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem('activeTab') || 'home';
+  });
+
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    localStorage.setItem('activeTab', tabId);
+  };
 
   const getPageTitle = (tab) => {
     switch (tab) {
-      case 'risk-dashboard':
-        return 'Risk Dashboard';
-      case 'triage':
-        return 'SIF-Precursor Triage';
-      case 'analyse':
-        return 'Analyse Statement';
-      case 'patterns':
-        return 'Precursor Patterns';
-      case 'sites':
-        return 'Sites & Activities';
-      case 'rules':
-        return 'Life-Saving Rules';
-      case 'reports':
-        return 'Reports';
-      case 'system':
-        return 'System';
-      case 'admin':
-        return 'Administration';
-      default:
-        return tab.replace('-', ' ');
+      case 'risk-dashboard': return 'Risk Dashboard';
+      case 'triage': return 'SIF-Precursor Triage';
+      case 'analyse': return 'Analyse Statement';
+      case 'patterns': return 'Precursor Patterns';
+      case 'sites': return 'Sites & Activities';
+      case 'rules': return 'Life-Saving Rules';
+      case 'reports': return 'Reports';
+      case 'system': return 'System';
+      case 'admin': return 'Administration';
+      case 'hse-admin': return 'HSE Administration Profile';
+      default: return tab.replace('-', ' ');
     }
   };
 
@@ -60,7 +48,7 @@ export default function App() {
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={handleTabChange}
       />
 
       <div className="flex-1 flex flex-col min-w-0">
@@ -69,40 +57,17 @@ export default function App() {
           pageTitle={getPageTitle(activeTab)}
         />
 
-        {activeTab === 'home' && (
-          <HomeView onNavigate={(tabId) => setActiveTab(tabId)} />
-        )}
-
+        {activeTab === 'home' && <HomeView onNavigate={(tabId) => handleTabChange(tabId)} />}
         {activeTab === 'analyse' && <AnalyseStatementView />}
-
         {activeTab === 'triage' && <SifPrecursorTriageView />}
-
         {activeTab === 'risk-dashboard' && <RiskDashboardView />}
-
         {activeTab === 'patterns' && <PrecursorPatternsView />}
-
         {activeTab === 'sites' && <SitesActivitiesView />}
-
         {activeTab === 'rules' && <LifeSavingRulesView />}
-
         {activeTab === 'reports' && <ReportsView />}
-
         {activeTab === 'system' && <SystemView />}
-
         {activeTab === 'admin' && <AdminView />}
-
-        {activeTab !== 'home' &&
-          activeTab !== 'analyse' &&
-          activeTab !== 'triage' &&
-          activeTab !== 'risk-dashboard' &&
-          activeTab !== 'patterns' &&
-          activeTab !== 'sites' &&
-          activeTab !== 'rules' &&
-          activeTab !== 'reports' &&
-          activeTab !== 'system' &&
-          activeTab !== 'admin' && (
-            <PlaceholderView title={getPageTitle(activeTab)} />
-          )}
+        {activeTab === 'hse-admin' && <HseAdminProfileView />}
       </div>
     </div>
   );
