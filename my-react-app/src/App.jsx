@@ -4,6 +4,7 @@ import Topbar from './components/Topbar';
 import HomeView from './components/views/HomeView';
 import AnalyseStatementView from './components/views/AnalyseStatementView';
 import SifPrecursorTriageView from './components/views/SifPrecursorTriageView';
+import RiskDashboardView from './components/views/RiskDashboardView';
 
 function PlaceholderView({ title }) {
   return (
@@ -20,7 +21,7 @@ function PlaceholderView({ title }) {
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('triage'); // Set to triage to view immediately
+  const [activeTab, setActiveTab] = useState('risk-dashboard'); // active on Risk Dashboard
 
   return (
     <div className="flex min-h-screen bg-[#f3f6f9] text-[#1c2a38] font-sans antialiased">
@@ -35,7 +36,9 @@ export default function App() {
         <Topbar
           onOpenSidebar={() => setSidebarOpen(true)}
           pageTitle={
-            activeTab === 'triage'
+            activeTab === 'risk-dashboard'
+              ? 'Risk Dashboard'
+              : activeTab === 'triage'
               ? 'SIF-Precursor Triage'
               : activeTab === 'analyse'
               ? 'Analyse Statement'
@@ -51,9 +54,12 @@ export default function App() {
 
         {activeTab === 'triage' && <SifPrecursorTriageView />}
 
+        {activeTab === 'risk-dashboard' && <RiskDashboardView />}
+
         {activeTab !== 'home' &&
           activeTab !== 'analyse' &&
-          activeTab !== 'triage' && (
+          activeTab !== 'triage' &&
+          activeTab !== 'risk-dashboard' && (
             <PlaceholderView title={activeTab.replace('-', ' ')} />
           )}
       </div>

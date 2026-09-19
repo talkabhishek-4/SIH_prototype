@@ -7,3 +7,37 @@ Real API Hook Ready: If you have a backend endpoint (e.g., FastAPI, Flask, or Ex
 Loading State & Animations: Displays a loader spinner on the button while processing.
 
 Interactive Result Dashboard: Displays the model's verdict (P-SIF vs Non-SIF), confidence score, rule violations, flagged keywords, and safety advice.
+
+________________________________________________________________________________________________________
+Here is the complete implementation for the Risk Dashboard (RiskDashboardView.jsx).   It features:Interactive SVG Spline Line Graph: Animated draw-in curves, interactive tracking vertical line, data points with scale-up on hover, and an accurate dynamic floating tooltip matching the UI (Mar: SIF-potential : 11, Total : 51).   Animated Activity Horizontal Bar Chart: Smooth width transition and toggle buttons between Volume and Density.   Ranked Sites Table: With responsive density progress bars, trend indicators, and risk badges. 
+
+______
+{/* 100% Full Width Hero Header with Refinery Image */}
+      <div className="relative w-full h-56 sm:h-64 md:h-72 lg:h-80 overflow-hidden shadow-sm">
+        {/* Background Image */}
+        <img
+          src="/home-banner.jpg"
+          alt="OIL Operations Complex"
+          className="w-full h-full object-cover object-center"
+          onError={(e) => {
+            // Fallback gradient if the image isn't in /public yet
+            e.currentTarget.style.display = 'none';
+          }}
+        />
+
+        {/* Gradient Overlay for Readable Text */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#021c19]/90 via-[#013531]/60 to-transparent flex flex-col justify-end p-6 md:p-8">
+          <div className="max-w-4xl space-y-1 text-white">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-md px-3 py-1 text-xs font-medium text-emerald-300 border border-white/20 mb-1">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Assam Asset & Refinery Operations</span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-sm">
+              Good morning, HSE Administrator
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-200 font-normal drop-shadow-sm">
+              Here is what is happening across your active field sites and processing facilities today.
+            </p>
+          </div>
+        </div>
+      </div>
