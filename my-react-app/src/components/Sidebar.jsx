@@ -48,9 +48,9 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
         />
       )}
 
-      {/* Sidebar Drawer */}
+      {/* Sidebar Drawer - Fixed/Sticky Positioned */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#013531] text-[#93a7a4] transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#013531] text-[#93a7a4] transition-transform duration-300 ease-in-out lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:translate-x-0 overflow-y-auto ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -71,7 +71,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-md text-gray-400 hover:text-white lg:hidden"
+            className="p-1 rounded-md text-gray-400 hover:text-white lg:hidden cursor-pointer"
             aria-label="Close sidebar"
           >
             <X size={20} />
@@ -79,7 +79,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
         </div>
 
         {/* Primary Navigation */}
-        <nav className="flex-1 space-y-1 px-3 py-3 overflow-y-auto">
+        <nav className="flex-1 space-y-1 px-3 py-3">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -87,7 +87,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium transition-colors text-left ${
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium transition-colors text-left cursor-pointer ${
                   isActive
                     ? 'bg-[#004e47] text-white border border-[#0b635c]'
                     : 'text-[#8da5a1] hover:bg-[#08423d] hover:text-white'
@@ -116,7 +116,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors text-left ${
+                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors text-left cursor-pointer ${
                   isActive
                     ? 'bg-[#004e47] text-white'
                     : 'text-[#8da5a1] hover:bg-[#08423d] hover:text-white'
