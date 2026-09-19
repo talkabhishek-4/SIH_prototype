@@ -34,7 +34,7 @@ export default function HseAdminProfileView() {
 
   // Dynamic HSE Engineer Profile State
   const [profile, setProfile] = useState({
-    name: 'Abhi Jais',
+    name: 'Abhishek Jaiswal',
     title: 'Lead HSE Engineer',
     role: 'Senior Field Safety & Risk Assessment Engineer',
     employeeId: 'OIL-ENG-2026-104',
@@ -42,7 +42,7 @@ export default function HseAdminProfileView() {
     organization: 'Oil India Limited (OIL)',
     location: 'Duliajan Operational Hub, Assam',
     email: 'abhi.engineer@oil.gov.in',
-    phone: '+91 98765 43210',
+    phone: '+91 XXXYY XY210',
     clearanceLevel: 'Level 4 (Field Safety Override & SIF Auditor)',
     activeDutyStatus: 'On Duty / Senior Risk Lead',
     certifications: [

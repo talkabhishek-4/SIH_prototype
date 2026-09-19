@@ -16,14 +16,11 @@ import HseAdminProfileView from './components/views/HseAdminProfileView';
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
-  // Tab persistence via localStorage (defaults to 'home')
-  const [activeTab, setActiveTab] = useState(() => {
-    return localStorage.getItem('activeTab') || 'home';
-  });
+  // Always default to 'home' on initial render/reload
+  const [activeTab, setActiveTab] = useState('home');
 
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
-    localStorage.setItem('activeTab', tabId);
   };
 
   const getPageTitle = (tab) => {
