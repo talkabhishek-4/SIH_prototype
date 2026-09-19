@@ -27,35 +27,35 @@ export default function HomeView({ onNavigate }) {
   // Carousel images configured with details corresponding to uploaded images
   const carouselImages = [
     {
-      src: '/slide1_2.jpg',
+      src: '/slide1.jpg',
       alt: 'Health Safety Environment Gear',
       title: 'Health, Safety & Environment (HSE)',
       tag: 'Mandatory PPE',
       caption: 'Hard hat, industrial leather gloves, eye safety goggles, and ear muff protection.'
     },
     {
-      src: '/slide2_2.jpg',
+      src: '/slide2.jpg',
       alt: 'Workplace Safety Equipment Guide',
       title: 'Work Safety Equipment Standard',
       tag: 'PPE Matrix',
       caption: 'Full protection checklist: Hard hat, eye protection, face mask, reflective vest, gloves, and boots.'
     },
     {
-      src: '/slide3_2.jpg',
+      src: '/slide3.jpg',
       alt: 'Oil India Limited Safety Tag',
       title: 'Oil India Limited — Workplace Safety',
       tag: 'Corporate Policy',
       caption: '"Safety at Workplace: NO COMPROMISE" enforced across rigs and operating facilities.'
     },
     {
-      src: '/slide4_2.jpg',
+      src: '/slide4.jpg',
       alt: 'IndianOil Safety Commitment',
       title: 'Your Safety. Our Priority. — IndianOil',
       tag: 'IndianOil Campaign',
       caption: 'A daily commitment upholding hazard prevention, life-saving rules, and site safety.'
     },
     {
-      src: '/slide5_2.jpg',
+      src: '/slide5.jpg',
       alt: 'OIL Personal Protective Equipment Schedule',
       title: 'OIL Personal Protective Equipment Schedule',
       tag: 'Safety Department',
@@ -320,7 +320,7 @@ export default function HomeView({ onNavigate }) {
           </div>
 
           <div
-            className="relative w-full overflow-hidden py-4 rounded-2xl bg-slate-950/90 border border-gray-200/80 shadow-sm group"
+            className="relative w-full overflow-hidden py-4 rounded-2xl bg-slate-100/80 border border-gray-200/80 shadow-sm group"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
