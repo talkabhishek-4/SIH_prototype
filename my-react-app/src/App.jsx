@@ -6,6 +6,7 @@ import AnalyseStatementView from './components/views/AnalyseStatementView';
 import SifPrecursorTriageView from './components/views/SifPrecursorTriageView';
 import RiskDashboardView from './components/views/RiskDashboardView';
 import PrecursorPatternsView from './components/views/PrecursorPatternsView';
+import SitesActivitiesView from './components/views/SitesActivitiesView';
 
 function PlaceholderView({ title }) {
   return (
@@ -69,12 +70,14 @@ export default function App() {
         {activeTab === 'risk-dashboard' && <RiskDashboardView />}
 
         {activeTab === 'patterns' && <PrecursorPatternsView />}
+        {activeTab === 'sites' && <SitesActivitiesView />}
 
         {activeTab !== 'home' &&
           activeTab !== 'analyse' &&
           activeTab !== 'triage' &&
           activeTab !== 'risk-dashboard' &&
-          activeTab !== 'patterns' && (
+          activeTab !== 'patterns' &&
+          activeTab !== 'sites' && (
             <PlaceholderView title={getPageTitle(activeTab)} />
           )}
       </div>
