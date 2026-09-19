@@ -5,13 +5,14 @@ import HomeView from './components/views/HomeView';
 import AnalyseStatementView from './components/views/AnalyseStatementView';
 import SifPrecursorTriageView from './components/views/SifPrecursorTriageView';
 import RiskDashboardView from './components/views/RiskDashboardView';
+import PrecursorPatternsView from './components/views/PrecursorPatternsView';
 
 function PlaceholderView({ title }) {
   return (
     <main className="flex-1 p-8">
-      <div className="rounded-xl border border-dashed border-gray-300 bg-white p-12 text-center shadow-xs">
-        <h2 className="text-xl font-bold capitalize text-gray-800">{title}</h2>
-        <p className="mt-2 text-sm text-gray-500">
+      <div className="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-xs">
+        <h2 className="text-xl font-bold capitalize text-slate-800">{title}</h2>
+        <p className="mt-2 text-sm text-slate-500">
           Content for the <span className="font-semibold">{title}</span> section is under construction.
         </p>
       </div>
@@ -21,7 +22,26 @@ function PlaceholderView({ title }) {
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('risk-dashboard'); // active on Risk Dashboard
+  const [activeTab, setActiveTab] = useState('patterns');
+
+  const getPageTitle = (tab) => {
+    switch (tab) {
+      case 'risk-dashboard':
+        return 'Risk Dashboard';
+      case 'triage':
+        return 'SIF-Precursor Triage';
+      case 'analyse':
+        return 'Analyse Statement';
+      case 'patterns':
+        return 'Precursor Patterns';
+      case 'sites':
+        return 'Sites & Activities';
+      case 'rules':
+        return 'Life-Saving Rules';
+      default:
+        return tab.replace('-', ' ');
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-[#f3f6f9] text-[#1c2a38] font-sans antialiased">
@@ -35,15 +55,7 @@ export default function App() {
       <div className="flex-1 flex flex-col min-w-0">
         <Topbar
           onOpenSidebar={() => setSidebarOpen(true)}
-          pageTitle={
-            activeTab === 'risk-dashboard'
-              ? 'Risk Dashboard'
-              : activeTab === 'triage'
-              ? 'SIF-Precursor Triage'
-              : activeTab === 'analyse'
-              ? 'Analyse Statement'
-              : activeTab.replace('-', ' ')
-          }
+          pageTitle={getPageTitle(activeTab)}
         />
 
         {activeTab === 'home' && (
@@ -56,11 +68,14 @@ export default function App() {
 
         {activeTab === 'risk-dashboard' && <RiskDashboardView />}
 
+        {activeTab === 'patterns' && <PrecursorPatternsView />}
+
         {activeTab !== 'home' &&
           activeTab !== 'analyse' &&
           activeTab !== 'triage' &&
-          activeTab !== 'risk-dashboard' && (
-            <PlaceholderView title={activeTab.replace('-', ' ')} />
+          activeTab !== 'risk-dashboard' &&
+          activeTab !== 'patterns' && (
+            <PlaceholderView title={getPageTitle(activeTab)} />
           )}
       </div>
     </div>
