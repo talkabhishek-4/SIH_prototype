@@ -1,0 +1,9 @@
+Here is the updated AnalyseStatementView.jsx with full operational behavior for the Analyse button:
+
+Integrated Mock Inference Engine: Evaluates the statement against safety keywords, detects high-risk P-SIF conditions, matches IOGP Life-Saving Rules, extracts key evidence, and delivers actionable recommendations.
+
+Real API Hook Ready: If you have a backend endpoint (e.g., FastAPI, Flask, or Express), simply uncomment the fetch block.
+
+Loading State & Animations: Displays a loader spinner on the button while processing.
+
+Interactive Result Dashboard: Displays the model's verdict (P-SIF vs Non-SIF), confidence score, rule violations, flagged keywords, and safety advice.
