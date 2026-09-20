@@ -295,7 +295,6 @@ export default function AdminView() {
         </div>
       )}
 
-      {/* TAB 3: ENVIRONMENT CONFIG */}
       {activeTab === 'config' && (
         <div className="bg-white rounded-xl border border-slate-200/80 shadow-xs p-5 space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -333,7 +332,6 @@ export default function AdminView() {
         </div>
       )}
 
-      {/* TAB 4: AUDIT LOGS */}
       {activeTab === 'logs' && (
         <div className="bg-white rounded-xl border border-slate-200/80 shadow-xs overflow-hidden">
           <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
