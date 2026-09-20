@@ -104,23 +104,6 @@ export default function AnalyseStatementView() {
     setLoading(true);
     setResult(null);
 
-    /* 
-      // 🔌 Real Backend API Integration Example:
-      try {
-        const response = await fetch('http://localhost:8000/api/analyse', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ statement, site, activity })
-        });
-        const data = await response.json();
-        setResult(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    */
-
     // Simulated inference delay (~700ms)
     setTimeout(() => {
       const evaluation = runSafetyClassifier(statement, site, activity);
@@ -143,14 +126,36 @@ export default function AnalyseStatementView() {
 
   return (
     <main className="flex-1 p-6 md:p-8 space-y-6">
-      {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-[#0e1d2c]">
-          Analyse a Statement
-        </h1>
-        <p className="mt-1 text-xs sm:text-sm text-gray-500">
-          Paste an observation / near-miss report (English, Hindi, Hinglish) — the local model returns verdict, evidence and safety knowledge.
-        </p>
+      {/* Header section with text on left and illustrative image on right */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs">
+        <div className="md:col-span-7 lg:col-span-8 space-y-2">
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-[#00695c] border border-teal-100">
+            <Zap size={13} />
+            <span>AI Safety Precursor Engine</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0e1d2c] tracking-tight">
+            Analyse a Statement
+          </h1>
+          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-2xl">
+            Paste an observation or near-miss report in English, Hindi, or Hinglish. 
+            The local SIF-detection model will automatically extract causal factors, map to IOGP Life-Saving Rules, and evaluate high-energy precursors.
+          </p>
+        </div>
+
+        {/* Diagram Image Container */}
+        <div className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end">
+          <div className="relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-1 shadow-2xs group">
+            <img
+              src="/analyse.jpg"
+              alt=""
+              className="w-full h-auto max-h-40 md:max-h-48 object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
+              onError={(e) => {
+                // Fallback image path attempt
+                e.currentTarget.src = '/analyse.jpg';
+              }}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Input Form Card */}
