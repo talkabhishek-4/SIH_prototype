@@ -13,23 +13,19 @@ import {
 } from 'lucide-react';
 
 export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
-  // Functional Dropdown States
   const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
   const [siteDropdownOpen, setSiteDropdownOpen] = useState(false);
   const [selectedDateRange, setSelectedDateRange] = useState('Last 30 days');
   const [selectedSite, setSelectedSite] = useState('All Sites');
 
-  // Interactive Sync State
   const [isSyncing, setIsSyncing] = useState(false);
   const [lastSyncText, setLastSyncText] = useState('Updated 2 min ago');
 
-  // Tooltip State for Operational Status
   const [showStatusModal, setShowStatusModal] = useState(false);
 
   const dateRef = useRef(null);
   const siteRef = useRef(null);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (dateRef.current && !dateRef.current.contains(e.target)) {
@@ -43,7 +39,7 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  // Sync Action Handler
+ 
   const handleManualSync = () => {
     if (isSyncing) return;
     setIsSyncing(true);
@@ -76,8 +72,7 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
 
   return (
     <header className="sticky top-0 z-30 flex flex-wrap items-center justify-between border-b border-slate-200/90 bg-white/80 backdrop-blur-xl px-6 py-3.5 shadow-sm transition-all duration-300">
-      
-      {/* Left: Navigation Trigger & Enhanced Breadcrumbs */}
+
       <div className="flex items-center gap-4">
         <button
           onClick={onOpenSidebar}
@@ -88,7 +83,7 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
         </button>
 
         <nav aria-label="Breadcrumb" className="flex items-center gap-2.5">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-900 to-slate-900 text-teal-300 border border-teal-800/50 shadow-xs">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-linear-to-r from-teal-900 to-slate-900 text-teal-300 border border-teal-800/50 shadow-xs">
             <Sparkles size={13} className="text-teal-400 animate-pulse" />
             <span className="font-extrabold tracking-wider uppercase text-[11px]">
               OIL HSSE
@@ -103,10 +98,8 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
         </nav>
       </div>
 
-      {/* Right: Live Telemetry, Sync & Refined Controls */}
       <div className="flex flex-wrap items-center gap-3 text-sm">
         
-        {/* Sync Trigger Button */}
         <button
           onClick={handleManualSync}
           disabled={isSyncing}
@@ -124,13 +117,12 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
           </span>
         </button>
 
-        {/* Live System Status Indicator */}
         <div className="relative">
           <button
             onMouseEnter={() => setShowStatusModal(true)}
             onMouseLeave={() => setShowStatusModal(false)}
             onClick={() => setShowStatusModal(!showStatusModal)}
-            className="flex items-center gap-2.5 rounded-xl border border-emerald-300/80 bg-gradient-to-r from-emerald-50 to-teal-50/60 px-3 py-1.5 text-xs font-bold text-emerald-950 shadow-2xs hover:shadow-xs hover:border-emerald-400 transition-all cursor-pointer"
+            className="flex items-center gap-2.5 rounded-xl border border-emerald-300/80 bg-linear-to-r from-emerald-50 to-teal-50/60 px-3 py-1.5 text-xs font-bold text-emerald-950 shadow-2xs hover:shadow-xs hover:border-emerald-400 transition-all cursor-pointer"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -139,7 +131,6 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
             <span>All Systems Operational</span>
           </button>
 
-          {/* Telemetry Status Popover */}
           {showStatusModal && (
             <div className="absolute right-0 top-full mt-2.5 w-64 rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-md p-4 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-150">
               <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5 text-xs font-extrabold text-slate-900">
@@ -164,7 +155,6 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
           )}
         </div>
 
-        {/* Date Range Dropdown */}
         <div className="relative" ref={dateRef}>
           <button
             type="button"
@@ -203,7 +193,7 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
                   }}
                   className={`flex w-full items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all text-left cursor-pointer ${
                     selectedDateRange === opt
-                      ? 'bg-gradient-to-r from-teal-50 to-emerald-50 text-teal-950 font-bold'
+                      ? 'bg-linear-to-r from-teal-50 to-emerald-50 text-teal-950 font-bold'
                       : 'text-slate-700 hover:bg-slate-100/70 hover:text-slate-900'
                   }`}
                 >
@@ -216,8 +206,7 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
             </div>
           )}
         </div>
-
-        {/* Site Selection Dropdown */}
+ 
         <div className="relative" ref={siteRef}>
           <button
             type="button"
@@ -256,7 +245,7 @@ export default function Topbar({ onOpenSidebar, pageTitle = 'Home' }) {
                   }}
                   className={`flex w-full items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all text-left cursor-pointer ${
                     selectedSite === opt
-                      ? 'bg-gradient-to-r from-teal-50 to-emerald-50 text-teal-950 font-bold'
+                      ? 'bg-linear-to-r from-teal-50 to-emerald-50 text-teal-950 font-bold'
                       : 'text-slate-700 hover:bg-slate-100/70 hover:text-slate-900'
                   }`}
                 >

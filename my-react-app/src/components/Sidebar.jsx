@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
-  // Main Navigation Configuration
+ 
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'analyse', label: 'Analyse Statement', icon: FileSearch },
@@ -35,12 +35,11 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
 
   const handleNavClick = (id) => {
     setActiveTab(id);
-    if (onClose) onClose(); // Closes drawer automatically on mobile when an item is selected
+    if (onClose) onClose(); 
   };
 
   return (
     <>
-      {/* Mobile Backdrop */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs lg:hidden"
@@ -48,13 +47,11 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
         />
       )}
 
-      {/* Sidebar Drawer - Fixed/Sticky Positioned */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[#013531] text-[#93a7a4] transition-transform duration-300 ease-in-out lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:translate-x-0 overflow-y-auto ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Brand / Logo Section */}
         <div className="flex items-center justify-between px-6 pt-5 pb-3">
           <div className="flex items-center gap-3">
             <img
@@ -78,7 +75,6 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
           </button>
         </div>
 
-        {/* Primary Navigation */}
         <nav className="flex-1 space-y-1 px-3 py-3">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -108,7 +104,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
 
           <div className="my-4 border-t border-[#0d443f]" />
 
-          {/* Secondary / Admin Items */}
+          
           {bottomNavItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -129,7 +125,6 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
           })}
         </nav>
 
-        {/* AI Model Status Badge */}
         <div className="p-3">
           <div className="rounded-xl bg-[#002724] p-3.5 border border-[#0d4742]/50">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#10b981]">
@@ -146,7 +141,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
           </div>
         </div>
 
-        {/* User Profile Footer (Navigates to HSE Administration Profile) */}
+        
         <div 
           className={`flex items-center justify-between border-t border-[#093f3a] p-3.5 transition-colors duration-150 cursor-pointer ${
             activeTab === 'hse-admin' 
@@ -170,7 +165,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
           <div 
             className="relative shrink-0 p-1 rounded-md hover:bg-white/10 transition-colors"
             onClick={(e) => {
-              e.stopPropagation(); // Prevents triggering profile tab open when clicking bell icon
+              e.stopPropagation(); 
             }}
           >
             <Bell size={18} className="text-[#84a39f] hover:text-white cursor-pointer" />
