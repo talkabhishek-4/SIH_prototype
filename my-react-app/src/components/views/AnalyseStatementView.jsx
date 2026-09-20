@@ -125,12 +125,12 @@ export default function AnalyseStatementView() {
   }, [statement, site, activity, loading]);
 
   return (
-    <main className="flex-1 p-6 md:p-8 space-y-6">
-      {/* Header section split into distinct containers */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+    <main className="flex-1 p-3 sm:p-4 md:p-5 space-y-4">
+      {/* Header section split into distinct, low-padding containers */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
         
         {/* Container 1: Text & Information */}
-        <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-center bg-white p-7 md:p-8 rounded-2xl border border-gray-200/80 shadow-xs space-y-4">
+        <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center bg-white p-5 md:p-6 rounded-2xl border border-gray-200/80 shadow-xs space-y-3">
           <div className="inline-flex w-fit items-center gap-2 rounded-full bg-teal-50 px-3.5 py-1.5 text-xs font-bold text-[#00695c] border border-teal-100">
             <Zap size={14} />
             <span>AI Safety Precursor Engine</span>
@@ -140,19 +140,19 @@ export default function AnalyseStatementView() {
             Analyse a Statement
           </h1>
           
-          <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-3xl">
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
             Paste an observation or near-miss report in English, Hindi, or Hinglish. 
             The local SIF-detection model will automatically extract causal factors, map to IOGP Life-Saving Rules, and evaluate high-energy precursors.
           </p>
         </div>
 
-        {/* Container 2: Image / Diagram Viewport */}
-        <div className="lg:col-span-5 xl:col-span-4 bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-center">
-          <div className="w-full h-full min-h-[220px] relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2 flex items-center justify-center group">
+        {/* Container 2: Larger Image Container */}
+        <div className="lg:col-span-6 xl:col-span-5 bg-white p-3 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-center">
+          <div className="w-full h-full min-h-[260px] relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2 flex items-center justify-center group">
             <img
               src="/analyse.jpg"
               alt="Safety Precursor Process Diagram"
-              className="w-full h-auto max-h-56 sm:max-h-64 object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"
+              className="w-full h-auto max-h-72 sm:max-h-80 md:max-h-96 object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
               onError={(e) => {
                 e.currentTarget.src = '/analyse.jpg';
               }}
@@ -163,23 +163,23 @@ export default function AnalyseStatementView() {
       </div>
 
       {/* Input Form Card */}
-      <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-xs">
+      <div className="rounded-2xl border border-gray-200/80 bg-white p-4 sm:p-5 shadow-xs">
         <textarea
-          rows={5}
+          rows={4}
           value={statement}
           onChange={(e) => setStatement(e.target.value)}
           placeholder="e.g. Monkey board se tool box neeche gira, barricading nahi tha..."
-          className="w-full resize-none rounded-xl border border-gray-200 p-4 text-sm text-gray-800 placeholder-gray-400 focus:border-teal-600 focus:outline-hidden focus:ring-1 focus:ring-teal-600"
+          className="w-full resize-none rounded-xl border border-gray-200 p-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-teal-600 focus:outline-hidden focus:ring-1 focus:ring-teal-600"
         />
 
         {/* Inputs & Examples */}
-        <div className="mt-4 flex flex-wrap items-center gap-3">
+        <div className="mt-3 flex flex-wrap items-center gap-2.5">
           <input
             type="text"
             placeholder="Site (optional)"
             value={site}
             onChange={(e) => setSite(e.target.value)}
-            className="rounded-lg border border-gray-200 px-3.5 py-1.5 text-xs text-gray-700 placeholder-gray-400 focus:border-teal-600 focus:outline-hidden sm:w-44"
+            className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs text-gray-700 placeholder-gray-400 focus:border-teal-600 focus:outline-hidden sm:w-44"
           />
 
           <input
@@ -187,10 +187,10 @@ export default function AnalyseStatementView() {
             placeholder="Activity (optional)"
             value={activity}
             onChange={(e) => setActivity(e.target.value)}
-            className="rounded-lg border border-gray-200 px-3.5 py-1.5 text-xs text-gray-700 placeholder-gray-400 focus:border-teal-600 focus:outline-hidden sm:w-44"
+            className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs text-gray-700 placeholder-gray-400 focus:border-teal-600 focus:outline-hidden sm:w-44"
           />
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5">
             <span className="text-xs text-gray-400">Try:</span>
             {examplePrompts.map((p, idx) => (
               <button
@@ -201,7 +201,7 @@ export default function AnalyseStatementView() {
                   setSite(p.site);
                   setActivity(p.activity);
                 }}
-                className="rounded-full bg-teal-50 px-3 py-1 text-xs font-medium text-[#00695c] hover:bg-teal-100 transition-colors cursor-pointer"
+                className="rounded-full bg-teal-50 px-2.5 py-1 text-xs font-medium text-[#00695c] hover:bg-teal-100 transition-colors cursor-pointer"
               >
                 {p.text.slice(0, 32)}...
               </button>
@@ -210,7 +210,7 @@ export default function AnalyseStatementView() {
         </div>
 
         {/* Action Button */}
-        <div className="mt-6 flex justify-end">
+        <div className="mt-4 flex justify-end">
           <button
             type="button"
             disabled={!statement.trim() || loading}
@@ -241,8 +241,8 @@ export default function AnalyseStatementView() {
 
       {/* Model Analysis Output Card */}
       {result && (
-        <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-xs animate-in fade-in slide-in-from-bottom-2 duration-300">
-          <div className="flex flex-wrap items-center justify-between border-b border-gray-100 pb-4 gap-2">
+        <div className="rounded-2xl border border-gray-200/80 bg-white p-5 shadow-xs animate-in fade-in slide-in-from-bottom-2 duration-300">
+          <div className="flex flex-wrap items-center justify-between border-b border-gray-100 pb-3 gap-2">
             <div className="flex items-center gap-2">
               {result.isPsif ? (
                 <ShieldAlert className="text-red-500" size={22} />
@@ -267,9 +267,9 @@ export default function AnalyseStatementView() {
             </div>
           </div>
 
-          <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Column 1: Core Metrics */}
-            <div className="space-y-3 border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-4">
+            <div className="space-y-3 border-b md:border-b-0 md:border-r border-gray-100 pb-3 md:pb-0 md:pr-4">
               <div>
                 <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">
                   Severity Level
@@ -299,7 +299,7 @@ export default function AnalyseStatementView() {
             </div>
 
             {/* Column 2: Key Evidence Extracted */}
-            <div className="space-y-2 border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-4">
+            <div className="space-y-2 border-b md:border-b-0 md:border-r border-gray-100 pb-3 md:pb-0 md:pr-4">
               <span className="text-xs text-gray-400 font-medium uppercase tracking-wider flex items-center gap-1.5">
                 <FileText size={13} />
                 Identified Hazards & Causal Factors
@@ -326,7 +326,7 @@ export default function AnalyseStatementView() {
                 </p>
               </div>
 
-              <div className="pt-3">
+              <div className="pt-2">
                 <button
                   type="button"
                   onClick={() => alert(`Record logged for Site: ${site || 'Not Specified'}`)}
