@@ -15,8 +15,7 @@ import HseAdminProfileView from './components/views/HseAdminProfileView';
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
-  // Always default to 'home' on initial render/reload
+   
   const [activeTab, setActiveTab] = useState('home');
 
   const handleTabChange = (tabId) => {

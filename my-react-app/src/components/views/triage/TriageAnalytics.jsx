@@ -13,10 +13,8 @@ export default function TriageAnalytics({
 }) {
   return (
     <div className="space-y-6">
-      {/* 1. FILTER DROPDOWNS BAR */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          {/* Time Range */}
           <div className="relative">
             <select
               value={filters.timeRange}
@@ -30,7 +28,6 @@ export default function TriageAnalytics({
             <ChevronDown size={14} className="pointer-events-none absolute right-2 top-2.5 text-gray-400" />
           </div>
 
-          {/* Site */}
           <div className="relative">
             <select
               value={filters.site}
@@ -45,7 +42,6 @@ export default function TriageAnalytics({
             <ChevronDown size={14} className="pointer-events-none absolute right-2 top-2.5 text-gray-400" />
           </div>
 
-          {/* Activity */}
           <div className="relative">
             <select
               value={filters.activity}
@@ -60,7 +56,6 @@ export default function TriageAnalytics({
             <ChevronDown size={14} className="pointer-events-none absolute right-2 top-2.5 text-gray-400" />
           </div>
 
-          {/* Rule */}
           <div className="relative">
             <select
               value={filters.rule}
@@ -75,7 +70,6 @@ export default function TriageAnalytics({
             <ChevronDown size={14} className="pointer-events-none absolute right-2 top-2.5 text-gray-400" />
           </div>
 
-          {/* Verdict */}
           <div className="relative">
             <select
               value={filters.verdict}
@@ -90,7 +84,6 @@ export default function TriageAnalytics({
             <ChevronDown size={14} className="pointer-events-none absolute right-2 top-2.5 text-gray-400" />
           </div>
 
-          {/* Review */}
           <div className="relative">
             <select
               value={filters.review}
@@ -105,7 +98,6 @@ export default function TriageAnalytics({
           </div>
         </div>
 
-        {/* Status Pills */}
         <div className="flex flex-wrap items-center gap-3 text-xs">
           <div className="flex items-center gap-1.5 rounded-full bg-[#fef3c7] px-3 py-1 font-semibold text-[#92400e]">
             <span className="h-2 w-2 rounded-full bg-amber-500" />
@@ -141,7 +133,6 @@ export default function TriageAnalytics({
         </div>
       </div>
 
-      {/* Filter Tag Chips */}
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-gray-100 pt-2 text-xs">
         <div className="flex flex-wrap items-center gap-2">
           <span className="font-semibold text-gray-400 uppercase tracking-wider text-[10px]">
@@ -176,7 +167,6 @@ export default function TriageAnalytics({
         </div>
       </div>
 
-      {/* 2. FIVE KPI SUMMARY TILES */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
         <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-xs">
           <div className="flex items-center gap-1.5 text-xs font-bold text-gray-600 uppercase tracking-wider">
@@ -236,8 +226,7 @@ export default function TriageAnalytics({
           <p className="mt-1 text-[11px] text-gray-500">oldest 3 days · est. 45 min</p>
         </div>
       </div>
-
-      {/* 3. HEATMAP, VERDICT MIX, FUNNEL */}
+ 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Heatmap */}
         <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-xs lg:col-span-5">
@@ -263,7 +252,7 @@ export default function TriageAnalytics({
               <tbody className="divide-y divide-gray-50">
                 {heatmapSites.map((row) => (
                   <tr key={row.name} className="hover:bg-gray-50">
-                    <td className="text-left font-medium py-1.5 pr-2 text-gray-700 truncate max-w-[120px]">
+                    <td className="text-left font-medium py-1.5 pr-2 text-gray-700 truncate max-w-30">
                       {row.name}
                     </td>
                     {row.values.map((v, i) => (
@@ -298,8 +287,7 @@ export default function TriageAnalytics({
             <span>hover a column for rule name</span>
           </div>
         </div>
-
-        {/* Verdict mix */}
+ 
         <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-xs lg:col-span-4 flex flex-col justify-between">
           <div>
             <div className="text-xs font-bold text-gray-900">
@@ -357,8 +345,7 @@ export default function TriageAnalytics({
             </p>
           </div>
         </div>
-
-        {/* Funnel */}
+ 
         <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-xs lg:col-span-3 flex flex-col justify-between">
           <div>
             <div className="text-xs font-bold text-gray-900">
@@ -379,7 +366,7 @@ export default function TriageAnalytics({
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">P-SIF flagged</span>
-                <span className="font-mono font-medium text-gray-800 text-red-600 font-bold">85</span>
+                <span className="font-mono text-red-600 font-bold">85</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Human reviewed</span>
@@ -406,8 +393,7 @@ export default function TriageAnalytics({
           </div>
         </div>
       </div>
-
-      {/* 4. ACT-FIRST ALERT CAROUSEL */}
+ 
       <div className="rounded-xl border border-red-200 bg-[#fff8f8] p-4">
         <div className="flex items-center gap-2 text-xs font-bold text-red-700">
           <AlertTriangle size={15} />

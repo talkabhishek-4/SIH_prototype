@@ -33,7 +33,7 @@ export default function TriageQueue({
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      {/* Table & Queue Tabs */}
+      
       <div className="lg:col-span-7 space-y-3">
         <div className="flex flex-wrap items-center justify-between border-b border-gray-200 pb-2">
           <div className="flex items-center gap-4 text-xs font-semibold">
@@ -136,8 +136,7 @@ export default function TriageQueue({
           </table>
         </div>
       </div>
-
-      {/* Selected Report Inspection Pane */}
+ 
       <div className="lg:col-span-5">
         <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-xs sticky top-4 space-y-4">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">

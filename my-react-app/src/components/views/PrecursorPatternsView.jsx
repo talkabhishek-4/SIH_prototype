@@ -24,8 +24,6 @@ import {
 export default function PrecursorPatternsView() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRisk, setSelectedRisk] = useState('all');
-  
-  // Modal states
   const [isReclustering, setIsReclustering] = useState(false);
   const [isReclusterSuccess, setIsReclusterSuccess] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -33,16 +31,14 @@ export default function PrecursorPatternsView() {
   const [exportFormat, setExportFormat] = useState('pdf');
   const [isExporting, setIsExporting] = useState(false);
 
-  const initialStats = [
+  const [stats, setStats] = useState([
     { title: 'Detected Clusters', value: '14 Active', trend: '+2 this week', icon: Network, color: 'text-teal-400' },
     { title: 'High-Risk Patterns', value: '05 Critical', trend: 'Requires Review', icon: AlertTriangle, color: 'text-rose-400' },
     { title: 'Pattern Confidence', value: '94.2%', trend: 'NLP Model v3.2', icon: Sparkles, color: 'text-emerald-400' },
     { title: 'Correlated Incidents', value: '128 Total', trend: 'Across 6 sites', icon: Layers, color: 'text-amber-400' },
-  ];
+  ]);
 
-  const [stats, setStats] = useState(initialStats);
-
-  const initialPatterns = [
+  const [patterns, setPatterns] = useState([
     {
       id: 'PAT-8091',
       title: 'Pressurized System Venting Sequence Failure',
@@ -99,9 +95,7 @@ export default function PrecursorPatternsView() {
       timeline: ['14 Jan - Handover note discrepancy', '22 Jan - LOTO tag delay reported', '30 Jan - Cluster formed from 9 field logs'],
       recommendedActions: ['Implement mandatory digital LOTO sign-off on tablet', 'Conduct shift lead alignment briefing']
     },
-  ];
-
-  const [patterns, setPatterns] = useState(initialPatterns);
+  ]);
 
   const handleRecluster = () => {
     setIsReclustering(true);
@@ -111,7 +105,6 @@ export default function PrecursorPatternsView() {
       setIsReclustering(false);
       setIsReclusterSuccess(true);
 
-      // Simulate slightly updated metrics
       setStats([
         { title: 'Detected Clusters', value: '16 Active', trend: '+2 re-clustered', icon: Network, color: 'text-teal-400' },
         { title: 'High-Risk Patterns', value: '06 Critical', trend: 'Updated just now', icon: AlertTriangle, color: 'text-rose-400' },
@@ -128,26 +121,26 @@ export default function PrecursorPatternsView() {
     setTimeout(() => {
       setIsExporting(false);
       setShowExportModal(false);
-      // Trigger a light visual toast/alert replacement
       const downloadAnchor = document.createElement('a');
       downloadAnchor.href = '#';
-      downloadAnchor.download = `HSSE_Precursor_Report_${new Date().toISOString().slice(0,10)}.${exportFormat}`;
+      downloadAnchor.download = `HSSE_Precursor_Report_${new Date().toISOString().slice(0, 10)}.${exportFormat}`;
     }, 1500);
   };
 
-  const filteredPatterns = patterns.filter((p) => {
-    const matchesSearch = p.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          p.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          p.impactArea.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          p.category.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesRisk = selectedRisk === 'all' || p.riskLevel.toLowerCase() === selectedRisk.toLowerCase();
+  const filteredPatterns = patterns.filter((pattern) => {
+    const matchesSearch = 
+      pattern.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      pattern.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      pattern.impactArea.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      pattern.category.toLowerCase().includes(searchTerm.toLowerCase());
+      
+    const matchesRisk = selectedRisk === 'all' || pattern.riskLevel.toLowerCase() === selectedRisk.toLowerCase();
+    
     return matchesSearch && matchesRisk;
   });
 
   return (
     <div className="p-4 sm:p-6 space-y-6 bg-[#f3f6f9] min-h-screen text-slate-800">
-      
-      {}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
@@ -160,7 +153,6 @@ export default function PrecursorPatternsView() {
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Re-cluster Button */}
           <button 
             onClick={handleRecluster}
             disabled={isReclustering}
@@ -172,7 +164,6 @@ export default function PrecursorPatternsView() {
             {isReclustering ? 'Re-clustering...' : 'Re-cluster Data'}
           </button>
 
-          {/* Export Report Button */}
           <button 
             onClick={() => setShowExportModal(true)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#013531] text-white text-xs font-semibold hover:bg-[#002724] hover:shadow-md transition-all duration-200 active:scale-95 cursor-pointer"
@@ -183,7 +174,6 @@ export default function PrecursorPatternsView() {
         </div>
       </div>
 
-      {/* Notification Toast for Recluster Success */}
       {isReclusterSuccess && (
         <div className="p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl flex items-center justify-between text-xs font-medium animate-fadeIn">
           <div className="flex items-center gap-2">
@@ -196,7 +186,6 @@ export default function PrecursorPatternsView() {
         </div>
       )}
 
-      {}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, idx) => {
           const Icon = stat.icon;
@@ -220,7 +209,6 @@ export default function PrecursorPatternsView() {
         })}
       </div>
 
-      {}
       <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="relative w-full md:w-80">
           <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -265,7 +253,6 @@ export default function PrecursorPatternsView() {
         </div>
       </div>
 
-      {}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredPatterns.length > 0 ? (
           filteredPatterns.map((pattern) => (
@@ -337,7 +324,6 @@ export default function PrecursorPatternsView() {
         )}
       </div>
 
-      {}
       {showExportModal && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 animate-in fade-in zoom-in duration-200">
@@ -423,11 +409,9 @@ export default function PrecursorPatternsView() {
         </div>
       )}
 
-      {}
       {activeAnalysisPattern && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-100 my-8 animate-in fade-in zoom-in duration-200">
-            {/* Header */}
             <div className="flex items-start justify-between border-b border-slate-100 pb-4">
               <div>
                 <div className="flex items-center gap-2">
@@ -456,7 +440,6 @@ export default function PrecursorPatternsView() {
               </button>
             </div>
 
-            {/* Content */}
             <div className="py-4 space-y-4 text-xs">
               <div>
                 <h4 className="font-bold text-slate-800 mb-1">AI Diagnostic Breakdown</h4>
@@ -476,20 +459,18 @@ export default function PrecursorPatternsView() {
                 </div>
               </div>
 
-              {/* Cluster Progression Timeline */}
               <div>
                 <h4 className="font-bold text-slate-800 mb-2">Pattern Detection Progression</h4>
                 <div className="space-y-2 border-l-2 border-[#013531]/20 pl-3">
                   {activeAnalysisPattern.timeline.map((event, i) => (
                     <div key={i} className="relative flex items-center gap-2 text-slate-600">
-                      <div className="w-2 h-2 rounded-full bg-[#013531] absolute -left-[17px]" />
+                      <div className="w-2 h-2 rounded-full bg-[#013531] absolute -left-4.25" />
                       <span>{event}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Recommended Actions */}
               <div>
                 <h4 className="font-bold text-slate-800 mb-2">AI-Recommended Mitigation Steps</h4>
                 <div className="space-y-1.5">
@@ -503,7 +484,6 @@ export default function PrecursorPatternsView() {
               </div>
             </div>
 
-            {/* Footer Actions */}
             <div className="flex items-center justify-between pt-4 border-t border-slate-100">
               <span className="text-[11px] text-slate-400">
                 Location: {activeAnalysisPattern.impactArea}
@@ -518,7 +498,6 @@ export default function PrecursorPatternsView() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
