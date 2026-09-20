@@ -126,36 +126,40 @@ export default function AnalyseStatementView() {
 
   return (
     <main className="flex-1 p-6 md:p-8 space-y-6">
-      {/* Header section with text on left and illustrative image on right */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-white p-6 rounded-2xl border border-gray-200/80 shadow-xs">
-        <div className="md:col-span-7 lg:col-span-8 space-y-2">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-[#00695c] border border-teal-100">
-            <Zap size={13} />
+      {/* Header section split into distinct containers */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        {/* Container 1: Text & Information */}
+        <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-center bg-white p-7 md:p-8 rounded-2xl border border-gray-200/80 shadow-xs space-y-4">
+          <div className="inline-flex w-fit items-center gap-2 rounded-full bg-teal-50 px-3.5 py-1.5 text-xs font-bold text-[#00695c] border border-teal-100">
+            <Zap size={14} />
             <span>AI Safety Precursor Engine</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0e1d2c] tracking-tight">
+          
+          <h1 className="text-3xl sm:text-4xl font-black text-[#0e1d2c] tracking-tight leading-tight">
             Analyse a Statement
           </h1>
-          <p className="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-2xl">
+          
+          <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-3xl">
             Paste an observation or near-miss report in English, Hindi, or Hinglish. 
             The local SIF-detection model will automatically extract causal factors, map to IOGP Life-Saving Rules, and evaluate high-energy precursors.
           </p>
         </div>
 
-        {/* Diagram Image Container */}
-        <div className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end">
-          <div className="relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-1 shadow-2xs group">
+        {/* Container 2: Image / Diagram Viewport */}
+        <div className="lg:col-span-5 xl:col-span-4 bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-center">
+          <div className="w-full h-full min-h-[220px] relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2 flex items-center justify-center group">
             <img
               src="/analyse.jpg"
-              alt=""
-              className="w-full h-auto max-h-40 md:max-h-48 object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
+              alt="Safety Precursor Process Diagram"
+              className="w-full h-auto max-h-56 sm:max-h-64 object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.03]"
               onError={(e) => {
-                // Fallback image path attempt
                 e.currentTarget.src = '/analyse.jpg';
               }}
             />
           </div>
         </div>
+
       </div>
 
       {/* Input Form Card */}
