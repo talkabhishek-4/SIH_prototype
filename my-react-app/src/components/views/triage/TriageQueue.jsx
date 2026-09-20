@@ -247,7 +247,7 @@ export default function TriageQueue({
                 style={{
                   width: `${Math.min(100, Math.max(5, (selectedReport.energyValue / 9000) * 100))}%`
                 }}
-                className="h-full rounded-full bg-gradient-to-r from-amber-500 to-red-600 transition-all duration-300"
+                className="h-full rounded-full bg-linear-to-r from-amber-500 to-red-600 transition-all duration-300"
               />
             </div>
           </div>
