@@ -14,7 +14,6 @@ export default function SifPrecursorTriageView() {
 
   const [selectedReportId, setSelectedReportId] = useState('OIL-2026-0914');
 
-  // Master Data
   const [reports, setReports] = useState([
     {
       id: 'OIL-2026-0914',
@@ -238,7 +237,6 @@ export default function SifPrecursorTriageView() {
 
   return (
     <main className="flex-1 p-5 md:p-7 space-y-6 overflow-x-hidden text-[#1e293b]">
-      {/* Top Half: Filters, KPI Tiles, Analytical Charts, Act-First Box */}
       <TriageAnalytics
         filters={filters}
         setFilters={setFilters}
@@ -250,7 +248,6 @@ export default function SifPrecursorTriageView() {
         getCellBg={getCellBg}
       />
 
-      {/* Bottom Half: Interactive Table Queue & Report Detail Pane */}
       <TriageQueue
         reports={reports}
         selectedReportId={selectedReportId}
