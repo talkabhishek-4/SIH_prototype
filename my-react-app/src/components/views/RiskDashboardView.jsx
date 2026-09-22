@@ -358,8 +358,7 @@ export default function RiskDashboardView() {
               </div>
             )}
           </div>
-
-          {/* Legend */}
+ 
           <div className="mt-4 flex items-center justify-center gap-4 text-xs font-medium text-gray-500">
             <div className="flex items-center gap-1.5">
               <span className="h-2.5 w-2.5 rounded-full bg-[#dc2626]" />
@@ -371,8 +370,7 @@ export default function RiskDashboardView() {
             </div>
           </div>
         </div>
-
-        {/* Right: Activity breakdown horizontal bars */}
+ 
         <div className="lg:col-span-4 rounded-xl border border-gray-100 bg-white p-6 shadow-xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
