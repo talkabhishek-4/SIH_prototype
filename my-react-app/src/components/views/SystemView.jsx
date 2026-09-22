@@ -104,7 +104,6 @@ export default function SystemView() {
     { name: 'Rajasthan (Jodhpur)', role: '', timeAgo: '34 min ago', status: 'pending' }
   ]);
 
-  // Model Evaluation Metrics Data
   const evaluationMetrics = [
     { label: 'Recall · P-SIF', value: 0.94, percent: 94, color: 'bg-emerald-500' },
     { label: 'Recall · H-SIF', value: 0.91, percent: 91, color: 'bg-emerald-500' },
@@ -186,7 +185,6 @@ export default function SystemView() {
 
   return (
     <div className="p-6 space-y-6 bg-[#f8fafc] min-h-screen text-slate-800 relative">
-      {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-slate-700 text-xs font-semibold animate-in fade-in slide-in-from-bottom-4 duration-200">
           <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
@@ -194,7 +192,6 @@ export default function SystemView() {
         </div>
       )}
 
-      {/* Edit YAML Configuration Modal */}
       {isYamlModalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl w-full max-w-2xl overflow-hidden animate-in zoom-in-95 duration-150">
@@ -237,7 +234,6 @@ export default function SystemView() {
         </div>
       )}
 
-      {/* Header Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-slate-200">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-500 font-medium mb-1">
@@ -250,7 +246,6 @@ export default function SystemView() {
           </h1>
         </div>
 
-        {/* Top Control Chips */}
         <div className="flex flex-wrap items-center gap-2.5 text-xs">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/80 font-mono font-medium">
             <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
@@ -337,10 +332,8 @@ export default function SystemView() {
         </div>
       </div>
 
-      {/* Middle Grid: Energy Thresholds & site_defaults.yaml */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        {/* Panel 2: Energy Thresholds */}
         <div className="lg:col-span-6 bg-white rounded-xl border border-slate-200/80 shadow-2xs flex flex-col">
           <div className="p-4 border-b border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -405,7 +398,6 @@ export default function SystemView() {
           </div>
         </div>
 
-        {/* Panel 3: site_defaults.yaml Viewer */}
         <div className="lg:col-span-6 bg-white rounded-xl border border-slate-200/80 shadow-2xs flex flex-col">
           <div className="p-4 border-b border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -442,7 +434,6 @@ export default function SystemView() {
         </div>
       </div>
 
-      {/* Bottom Grid: Sync Topology & Model Evaluation */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
         {/* Panel 4: Sync Topology */}
