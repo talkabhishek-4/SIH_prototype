@@ -20,7 +20,7 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'analyse', label: 'Analyse Statement', icon: FileSearch },
-    { id: 'triage', label: 'SIF-Precursor Triage', icon: Layers, badge: '9' },
+    { id: 'triage', label: 'SIF-Precursor ', icon: Layers,},
     { id: 'risk-dashboard', label: 'Risk Dashboard', icon: BarChart3 },
     { id: 'patterns', label: 'Precursor Patterns', icon: Network },
     { id: 'sites', label: 'Sites & Activities', icon: MapPin },
@@ -169,9 +169,9 @@ export default function Sidebar({ isOpen, onClose, activeTab, setActiveTab }) {
             }}
           >
             <Bell size={18} className="text-[#84a39f] hover:text-white cursor-pointer" />
-            <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#ea580c] text-[9px] font-bold text-white">
+            {/* <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#ea580c] text-[9px] font-bold text-white">
               4
-            </span>
+            </span> */}
           </div>
         </div>
       </aside>
