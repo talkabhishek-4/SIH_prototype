@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 export default function AnalyseStatementView() {
-  const [mode, setMode] = useState('single'); // 'single' | 'batch'
+  const [mode, setMode] = useState('single'); 
   const [statement, setStatement] = useState('');
   const [site, setSite] = useState('');
   const [activity, setActivity] = useState('');
@@ -250,7 +250,7 @@ export default function AnalyseStatementView() {
         </div>
 
         <div className="lg:col-span-6 xl:col-span-5 bg-white p-3 rounded-2xl border border-gray-200/80 shadow-xs flex items-center justify-center">
-          <div className="w-full h-full min-h-[260px] relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2 flex items-center justify-center group">
+          <div className="w-full h-full min-h-65 relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-2 flex items-center justify-center group">
             <img
               src="/analyse.jpg"
               alt="Safety Precursor Process Diagram"
